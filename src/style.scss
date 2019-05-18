@@ -26,6 +26,10 @@ textarea {
   line-height: 1;
   font-family: "Poppins";
 }
+input {
+  background: #fff !important;
+  border-radius: 4px;
+}
 input[type="date"]::-webkit-calendar-picker-indicator {
   color: rgba(0, 0, 0, 0);
   opacity: 1;
@@ -367,10 +371,10 @@ progress {
 .new-meet-create__meet-date {
   position: absolute;
   left: 656px;
-  top: 94px;
+  top: 117px;
   width: 238px;
   height: 38px;
-  border-radius: 4px;
+  font-family: "Poppins";
 }
 .new-meet-create__meet-people {
   position: absolute;
@@ -605,7 +609,7 @@ input[type="time"]::-webkit-outer-spin-button {
   left: 911px;
   top: 97px;
 }
-.new-meet-create__possible-time {
+.new-meet-create__possible-begin-time {
   position: absolute;
   background: #fff;
   border-radius: 4px 4px 0 0;
@@ -634,7 +638,7 @@ input[type="time"]::-webkit-outer-spin-button {
   background: #fff;
   border-radius: 4px 4px 0 0;
   height: 117px;
-  left: 1008px;
+  left: 1004px;
   top: 3px;
   list-style: none;
   li {

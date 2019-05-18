@@ -3,6 +3,10 @@ import { observer } from "mobx-react";
 import { meetingRooms, floorsWithMeetingRooms } from './constants.js';
 import CreateNewMeetField from './components/Create-New-Meet-Window';
 import FloorsWithMeetingRooms from './components/Floors-With-Meeting-Rooms';
+import TimeBlocks from './components/Time-Blocks';
+import Header from './components/Header';
+import DatePicker from './components/Date-Picker';
+import Dialog from '@material-ui/core/Dialog';
 
 let q = document.querySelector.bind(document);
 
@@ -13,40 +17,22 @@ const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/
 {console.log(images)}
 const Meetings = observer(({ appState }) => (
   <React.Fragment>
-    <div className="header">
-      <img className="header__gp-icon" src={images[45]} width="50" height="50" alt="" />
-      <div className="header__text">Meetings</div>
-      <button className="header__button-create-meeting" onClick={appState.toggleNewMeetWindowShow}>
-        { appState.newMeetWindowShow ? 'cancel meet' : 'new meet' }
-      </button>
-    </div>
-    <button onClick={appState.reset}>Seconds passed: {appState.timer}</button>
+    <Dialog open={false} >
+      <button onClick={appState.reset}>Seconds passed: {appState.timer}</button>
+    </Dialog>
+    <Header appState={appState} image={images[45]} />
     <div className="main">
-      { appState.newMeetWindowShow && <CreateNewMeetField />}
-      <div className="main__date-picker">
-        <div className="date-picker__date-today">
-          <img className="date-picker__arrows" src={images[43]} alt="" />
-          <span>
-            {appState.timeNow.getDate() +
-              " " +
-              appState.timeNow
-                .toDateString()
-                .split(" ")[1]
-                .toLowerCase()}{" "}
-            • Today
-          </span>
-          <img className="date-picker__arrows" src={images[42]} alt="" />
-        </div>
-        <div className="date-picker__hours">
-          {Array.apply(null, { length: 16 }).map((el, i) => (
-            <span key={i + 8} className={`date-picker__hour hour${i}`}>
-              {i + 8}
-            </span>
-          ))}
-        </div>
-      </div>
+      { appState.newMeetWindowShow && <CreateNewMeetField images={images} appState={appState} />}
+      <DatePicker appState={appState} leftArrow={images[43]} rightArrow={images[42]} />
       <FloorsWithMeetingRooms/>
-      
+      <div className="meeting-schedule">
+        <div className="main__time-now">
+          {appState.getTime().toTimeString().slice(0, 5)}
+        </div>
+        <div className="main__vertical-line" />
+        <TimeBlocks/>
+
+      </div>
 
 
     </div>
