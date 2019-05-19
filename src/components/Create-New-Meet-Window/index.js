@@ -5,6 +5,7 @@ import Participants from '../Participants';
 import DatePicker from "react-datepicker";
 import InlineDatePicker from '../Inline-Date-Picker';
 import MeetingRoom from '../Meeting-Room';
+import InvitedParticipants from '../Invited-Participants';
 
 let qa = document.querySelectorAll.bind(document);
 
@@ -38,6 +39,7 @@ const CreateNewMeetField = inject('NewMeetStore', 'GeneralStore')(observer(
     render() {
       const { images, appState } = this.props;
       const { possibleTimeShown, startDate, setDatePickerDate } = this.props.NewMeetStore;
+      const { setSelectedMeetingRoom } = this.props.GeneralStore;
       return (
         <div className="main__new-meet-create"> { console.log( ' debug GeneralStore : ', this.props.GeneralStore.timeBlocks[44] ) }
           <img onClick={appState.toggleNewMeetWindowShow} src={images[44]} alt="" className="new-meet-create__circle-icon-with-close"/>
@@ -62,6 +64,32 @@ const CreateNewMeetField = inject('NewMeetStore', 'GeneralStore')(observer(
           <Participants images={images} />
 
           <MeetingRoom buttomArrowIcon={images[41]} />
+
+          <InvitedParticipants images={images} testAvatar={images[0]} />
+
+          <button
+            className="new-meet-create__back-button"
+            onClick={() => {appState.toggleNewMeetWindowShow(); setSelectedMeetingRoom('') } }
+          >
+            {'Back'}
+          </button>
+          <button
+            className="new-meet-create__create-button"
+            onClick={() => {
+              // if ( selectedMeetingRoom ) {
+              //   if ( isEmpty(people) ) alert(' choose participants ');
+              //   else {
+              //     addMeet(selectedTimeBlock, people);
+              //     newMeetWindowShow();
+              //     setMeetingRoom("");
+              //   }
+              // } else {
+              //   alert("choose meet room")
+              // }
+            }}
+          >
+            {"Create"}
+          </button>
 
         </div>
       )

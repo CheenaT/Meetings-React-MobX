@@ -1,4 +1,5 @@
-import { decorate, observable, action } from 'mobx';
+import { decorate, observable, action, remove } from 'mobx';
+import omit from 'object.omit';
 
 class NewMeetStore {
   beginTime = new Date(Math.ceil(new Date().getTime() / (60*1000*5) ) * 60*1000*5);
@@ -11,6 +12,14 @@ class NewMeetStore {
   recommendedMeetingRoom = [];
   people = {};
   timeInterval = null;
+
+  addParticipant(name, position) {
+    this.people[name] = { name, image: position, isHover: false }
+  }
+
+  deleteParticipant(name) {
+    remove(this.people, name)
+  }
 
   setPossibleTimeShown(value) {
     this.possibleTimeShown = value;
@@ -78,8 +87,10 @@ decorate(NewMeetStore, {
   setRecommendedMeetingRoom: action.bound,
   setBeginTime: action.bound,
   setEndTime: action.bound,
+  addParticipant: action.bound,
+  deleteParticipant: action.bound,
   initTime: action,
-  dispose: action
+  dispose: action,
 })
 
 export default new NewMeetStore();

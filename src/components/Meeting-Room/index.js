@@ -40,7 +40,7 @@ const MeetingRoom = inject('NewMeetStore', 'GeneralStore')(observer(
               <div
                 className="new-meet-create__selected-meeting-room"
                 onMouseOver={ () => { this.hoverMeetingRoom(); this.setState({ meetingRoomIsHover: 1}) } }
-                onMouseOut={ () => {
+                onMouseLeave={ () => {
                   // let tempMeetingRoomIsHover = meetingRoomIsHover;
                   setTimeout( () => {
                     console.log(' debug meetingRoomIsHover : ', meetingRoomIsHover, this.meetingRoomIsHover);
@@ -55,13 +55,6 @@ const MeetingRoom = inject('NewMeetStore', 'GeneralStore')(observer(
                   src={buttomArrowIcon}
                   alt=""
                   className="new-meet-create__buttom-arrow"
-                  onMouseOver={ () => { this.hoverMeetingRoom(); this.setState({ meetingRoomIsHover: 1}) } }
-                  onMouseOut={() =>
-                    this.setState({
-                      recommendedMeetingRoom: [],
-                      meetingRoomIsHover: false
-                    })
-                  }
                 />
               {
                 meetingRoomIsHover ? "Choose another meeting room?" : selectedMeetingRoom

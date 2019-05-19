@@ -6,9 +6,12 @@ const qa = document.querySelectorAll.bind(document);
 
 const Participants = inject('NewMeetStore', 'GeneralStore')(observer(
   class Participants extends React.Component {
+    state = {
+      participantsListIsShown: false
+    };
     render() {
       const {
-        NewMeetStore: { setParticipantsListIsShown, participantsListIsShown, people },
+        NewMeetStore: { addParticipant, setParticipantsListIsShown, participantsListIsShown, people },
         GeneralStore: { findingParticipantChange, findingParticipant },
         images
       } = this.props;
@@ -19,28 +22,28 @@ const Participants = inject('NewMeetStore', 'GeneralStore')(observer(
             placeholder="For example, Elon Musk"
             type="text"
             className="new-meet-create__meet-people"
-            onFocus={() => setParticipantsListIsShown(3) }
-            onBlur={() => setParticipantsListIsShown(false) }
-            onMouseOver={ () => { if (participantsListIsShown !== 3) setParticipantsListIsShown(1) } }
+            onFocus={() => this.setState({ participantsListIsShown: 3 }) }
+            onBlur={() => this.setState({ participantsListIsShown: false }) }
+            onMouseOver={ () => { if (participantsListIsShown !== 3) this.setState({ participantsListIsShown: 1 }) } }
             onMouseOut={ () => {
               setTimeout( () => {
-                if ( participantsListIsShown !== 3 && participantsListIsShown !== 2) {
-                  setParticipantsListIsShown(false)
+                if ( this.state.participantsListIsShown !== 3 && this.state.participantsListIsShown !== 2) {
+                  this.setState({ participantsListIsShown: false })
                 } }, 300)
             } }
             onChange={ e => findingParticipantChange(e.target.value) }
             value={ findingParticipant }
           />
-          { participantsListIsShown &&
+          { this.state.participantsListIsShown &&
             <div
               className="new-meet-create__participants-list"
-              onMouseOver={ () => { if (participantsListIsShown !== 3) setParticipantsListIsShown(2) }}
+              onMouseOver={ () => { if (participantsListIsShown !== 3) this.setState({ participantsListIsShown: 2 }) }}
             >
               <ul className='new-meet-create__meet-people-list' > {console.log(' participants : ', participants)}
                 { participants.filter( ({ name }) => name.toLowerCase().indexOf(findingParticipant.toLowerCase()) !== -1 ).map( (el, i) =>
                     <li
                       key={i}
-                      onMouseDown={ e => this.addParticipant(e, el.name, i)}
+                      onMouseDown={ () => addParticipant(el.name, i)}
                       onPointerEnter={ () => ( qa('li')[i].style.background = '#E9ECEF' ) }
                       onPointerLeave={ () => ( qa('li')[i].style.background = '#FFF' ) }
                     >

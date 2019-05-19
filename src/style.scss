@@ -323,7 +323,7 @@ progress {
 }
 .new-meet-create__circle-icon-with-close {
   position: absolute;
-  left: 1126px;
+  left: 1419px;
   top: 50px;
   width: 24px;
   height: 24px;
@@ -684,7 +684,7 @@ input[type="time"]::-webkit-outer-spin-button {
   position: absolute;
   left: 1116px;
   top: 200px;
-  width: 420px;
+  width: 332px;
   height: 352px;
 }
 .invited-people__participant {
@@ -872,4 +872,15 @@ input[type="time"]::-webkit-outer-spin-button {
   width: 24px;
   height: 24px;
   border-radius: 50%;
+}
+.MuiChip-colorSecondary {
+    color: #000 !important;
+    background-color: white !important;
+}
+.MuiChip-root {
+  margin: 5px !important;
+  width: 156px !important;
+}
+.MuiChip-label {
+    width: 108px !important;
 }
