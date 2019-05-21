@@ -62,10 +62,10 @@ class App {
 
     startTicking() {
         this.tick(); // initial tick
-        this.intervalHandler = setInterval(
-            () => this.tick(),
-            1000
-        );
+        // this.intervalHandler = setInterval(
+        //     () => this.tick(),
+        //     1000
+        // );
     }
 
     stopTicking() {

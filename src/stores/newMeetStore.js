@@ -1,4 +1,4 @@
-import { decorate, observable, action, remove } from 'mobx';
+import { decorate, observable, action, set, remove } from 'mobx';
 import omit from 'object.omit';
 
 class NewMeetStore {
@@ -13,8 +13,9 @@ class NewMeetStore {
   people = {};
   timeInterval = null;
 
-  addParticipant(name, position) {
-    this.people[name] = { name, image: position, isHover: false }
+  addParticipant(newPeople) {
+    // this.people[name] = { name, image: position, isHover: false }
+    this.people = newPeople
   }
 
   deleteParticipant(name) {
@@ -41,18 +42,22 @@ class NewMeetStore {
     this.recommendedMeetingRoom = value;
   }
 
-  setBeginTime(e) {
-    this.beginTime = e.target.value;
+  setBeginTime(value) {
+    console.log(' debug setBeginTime value : ', value);
+    const hours = +value.slice(0,2),
+           mins = +value.slice(3,5);
+    this.beginTime = value;
+    this.endTime = new Date(new Date().setHours(hours, mins + 30))
   }
 
-  setEndTime(e) {
-    this.endTime = e.target.value;
+  setEndTime(value) {
+    this.endTime = value;
   }
 
   initTime() {
     if (!this.timeInterval) {
       this.beginTime = new Date(Math.ceil(new Date().getTime() / (60*1000*5) ) * 60*1000*5);
-      this.timeInterval = setInterval( () => this.beginTime = new Date(Math.ceil(new Date().getTime() / (60*1000*5) ) * 60*1000*5), 5 * 60 * 1000 );
+      // this.timeInterval = setInterval( () => this.beginTime = new Date(Math.ceil(new Date().getTime() / (60*1000*5) ) * 60*1000*5), 5 * 60 * 1000 );
     }
   }
 

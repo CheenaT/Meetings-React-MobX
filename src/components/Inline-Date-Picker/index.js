@@ -19,7 +19,7 @@ function InlineDatePicker(props) {
         InputProps={{
          disableUnderline: true,
         }}
-        format="MMM d yyyy"
+        format="MMM d, yyyy"
       />
     </MuiPickersUtilsProvider>
   )

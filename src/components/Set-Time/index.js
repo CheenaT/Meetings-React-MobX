@@ -5,6 +5,10 @@ let qa =document.querySelectorAll.bind(document);
 
 const SetTime = inject('NewMeetStore')(observer(
   class SetTime extends React.Component {
+    state = {
+      possibleTimeShown: false,
+      possibleEndTimeShown: false
+    }
     render() {
       const { period, NewMeetStore: { possibleTimeShown, possibleEndTimeShown, beginTime, endTime, setBeginTime, setEndTime } } = this.props;
       return (
@@ -13,20 +17,30 @@ const SetTime = inject('NewMeetStore')(observer(
             {period}
           </label>
           {
-            (period === 'Begin' ? possibleTimeShown : possibleEndTimeShown) &&
+            (period === 'Begin' ? this.state.possibleTimeShown : this.state.possibleEndTimeShown) &&
             <ul
-              onMouseOver={() => period === 'Begin' ? this.props.NewMeetStore.setPossibleTimeShown(1) : this.props.NewMeetStore.setPossibleEndTimeShown(1) }
-              onMouseLeave={() => period === 'Begin' ? this.props.NewMeetStore.setPossibleTimeShown(false) : this.props.NewMeetStore.setPossibleEndTimeShown(false) }
+              onMouseOver={() => period === 'Begin' ? this.setState({ possibleTimeShown: 2}) : this.setState({ possibleEndTimeShown: 2}) }
+              onMouseLeave={ () => {
+                setTimeout( () => {
+                  if ( period === 'Begin' ? this.state.possibleTimeShown === 2 : this.state.possibleEndTimeShown === 2 ) {
+                    period === 'Begin' ? this.setState({ possibleTimeShown: false }) : this.setState({ possibleEndTimeShown: false })
+                  }
+                }, 200)
+              } }
               onClick={ (e) => {
-                 const hours = +e.target.innerText.slice(0,2),
-                        mins = +e.target.innerText.slice(3,5);
-                 period === 'Begin' ? this.props.NewMeetStore.setPossibleTimeShown(false) : this.props.NewMeetStore.setPossibleEndTimeShown(false)
+                 if (period === 'Begin') {
+                   setBeginTime(e.target.innerText);
+                   this.setState({ possibleTimeShown: false })
+                 } else {
+                   setEndTime(e.target.innerText);
+                   this.setState({ possibleEndTimeShown: false })
+                 }
                } }
               className={`new-meet-create__possible-${period.toLowerCase()}-time`} >
               {Array.apply(null, { length: 5 }).map((el, i) => {
                 const possibleTime = new Date(
-                  new Date(period === 'Begin' ? beginTime : endTime).setMinutes(
-                    Math.ceil( (new Date(period === 'Begin' ? beginTime : endTime).getMinutes() + 1) / 30) * 30 + (5 - i) * 30
+                  new Date(period === 'Begin' ? typeof beginTime === 'object' ? beginTime : new Date().setHours(beginTime.slice(0,2), beginTime.slice(3,5)) : typeof endTime === 'object' ? endTime : new Date().setHours(endTime.slice(0,2), endTime.slice(3,5)) ).setMinutes(
+                    Math.ceil( (new Date(period === 'Begin' ? typeof beginTime === 'object' ? beginTime : new Date().setHours(beginTime.slice(0,2), beginTime.slice(3,5)) : typeof endTime === 'object' ? endTime : new Date().setHours(endTime.slice(0,2), endTime.slice(3,5))).getMinutes() + 1) / 30) * 30 + (5 - i) * 30
                   )
                 );
                 const mins = possibleTime.getHours() * 60 + possibleTime.getMinutes();
@@ -39,8 +53,8 @@ const SetTime = inject('NewMeetStore')(observer(
                   >
                     {
                           new Date(
-                            new Date(period === 'Begin' ? beginTime : endTime).setMinutes(
-                              Math.ceil( (new Date(period === 'Begin' ? beginTime : endTime).getMinutes() + 1) / 30) *
+                            new Date(period === 'Begin' ? typeof beginTime === 'object' ? beginTime : new Date().setHours(beginTime.slice(0,2), beginTime.slice(3,5)) : typeof endTime === 'object' ? endTime : new Date().setHours(endTime.slice(0,2), endTime.slice(3,5))).setMinutes(
+                              Math.ceil( (new Date(period === 'Begin' ? typeof beginTime === 'object' ? beginTime : new Date().setHours(beginTime.slice(0,2), beginTime.slice(3,5)) : typeof endTime === 'object' ? endTime : new Date().setHours(endTime.slice(0,2), endTime.slice(3,5))).getMinutes() + 1) / 30) *
                                 30 +
                                 (4 - i) * 30 +
                                 diff
@@ -57,9 +71,16 @@ const SetTime = inject('NewMeetStore')(observer(
           <input
             className="new-meet-create__time"
             type="time"
-            value = { period === 'Begin' ? typeof beginTime === 'object' ? beginTime.toTimeString().slice(0,5) : endTime : typeof endTime === 'object' ? endTime.toTimeString().slice(0,5) : endTime }
-            onChange={ (e) => { period === 'Begin' ? setBeginTime(e) : setEndTime(e) } }
-            onMouseOver={() => period === 'Begin' ? this.props.NewMeetStore.setPossibleTimeShown(true) : this.props.NewMeetStore.setPossibleEndTimeShown(true)}
+            value = { period === 'Begin' ? typeof beginTime === 'object' ? beginTime.toTimeString().slice(0,5) : beginTime : typeof endTime === 'object' ? endTime.toTimeString().slice(0,5) : endTime }
+            onChange={ (e) => { period === 'Begin' ? setBeginTime(e.target.value) : setEndTime(e.target.value) } }
+            onMouseOver={() => period === 'Begin' ? this.setState({ possibleTimeShown: 1}) : this.setState({ possibleEndTimeShown: 1}) }
+            onMouseLeave={ () => {
+              setTimeout( () => {
+                if ( period === 'Begin' ? this.state.possibleTimeShown === 1 : this.state.possibleEndTimeShown === 1 ) {
+                  period === 'Begin' ? this.setState({ possibleTimeShown: false }) : this.setState({ possibleEndTimeShown: false })
+                }
+              }, 200)
+            } }
           />
         </React.Fragment>
       )

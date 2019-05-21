@@ -7,6 +7,12 @@ const MeetingRoom = inject('NewMeetStore', 'GeneralStore')(observer(
     state = {
       meetingRoomIsHover: false
     };
+    componentDidMount() {
+      const { GeneralStore: { selectedMeetingRoom } } = this.props;
+      if ( !selectedMeetingRoom ) {
+        this.hoverMeetingRoom();
+      }
+    }
     hoverMeetingRoom = (e, i) => {
       const { NewMeetStore: { setRecommendedMeetingRoom }, GeneralStore : { timeBlocks } } = this.props;
       let copyRecommendedMeetingRoom = [], hours = new Date().getHours(), j = 0;
@@ -15,6 +21,7 @@ const MeetingRoom = inject('NewMeetStore', 'GeneralStore')(observer(
       }
         floorsWithMeetingRooms.forEach( floor => {
           floor.meetingRooms.forEach( el => {
+            console.log(' debug recommendedMeetingRoom : ', !timeBlocks[hours - 8 + 17 * j++] )
             if ( !timeBlocks[hours - 8 + 17 * j++] ) {
               copyRecommendedMeetingRoom.push({ room: el.room, floor: floor.floor })
             }
@@ -57,7 +64,7 @@ const MeetingRoom = inject('NewMeetStore', 'GeneralStore')(observer(
                   className="new-meet-create__buttom-arrow"
                 />
               {
-                meetingRoomIsHover ? "Choose another meeting room?" : selectedMeetingRoom
+                this.state.meetingRoomIsHover ? "Choose another meeting room?" : selectedMeetingRoom
               }
               </div>
             )
@@ -79,7 +86,7 @@ const MeetingRoom = inject('NewMeetStore', 'GeneralStore')(observer(
             }
           }
           >
-          { ( meetingRoomIsHover && selectedMeetingRoom ) ?
+          { ( this.state.meetingRoomIsHover && selectedMeetingRoom ) ?
             recommendedMeetingRoom.map( (el, i) =>
                 <li
                   key={i}
@@ -90,7 +97,7 @@ const MeetingRoom = inject('NewMeetStore', 'GeneralStore')(observer(
                     setSelectedMeetingRoom(el.room);
                   } }
                 >
-                  {`${beginTime.toTimeString().slice(0,5)} — ${endTime.toTimeString().slice(0,5)}  `}{el.room + ' • ' + el.floor + ' floor'}
+                  {typeof beginTime === 'object' ? beginTime.toTimeString().slice(0,5) : beginTime} — {typeof endTime === 'object' ? endTime.toTimeString().slice(0,5) : endTime} {el.room + ' • ' + el.floor + ' floor'}
                 </li>
             ) :
             recommendedMeetingRoom.map( (el, i) =>
@@ -101,7 +108,7 @@ const MeetingRoom = inject('NewMeetStore', 'GeneralStore')(observer(
                     setSelectedMeetingRoom(el.room);
                   } }
                 >
-                  {`${beginTime.toTimeString().slice(0,5)} — ${endTime.toTimeString().slice(0,5)}  `}{el.room + ' • ' + el.floor + ' floor'}
+                  {typeof beginTime === 'object' ? beginTime.toTimeString().slice(0,5) : beginTime} — {typeof endTime === 'object' ? endTime.toTimeString().slice(0,5) : endTime} {el.room + ' • ' + el.floor + ' floor'}
                 </li>
             )
           }

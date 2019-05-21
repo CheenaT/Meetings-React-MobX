@@ -1,211 +1,246 @@
 export const participants = [
   {
-    id: 1,
-    name: "Darth Vader",
+    id: 0,
+    value: "Darth Vader",
+    label: "Darth Vader", // for react-select
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
-    id: 2,
-    name: "Genghis Khan",
+    id: 1,
+    value: "Genghis Khan",
+    label: "Genghis Khan",
     about: " • CEO and founter of Mongol Empire • 18 floor",
     image: "./../../images/Anakin.jpg"
   },
   {
-    id: 1,
-    name: "Vincent Vega",
+    id: 2,
+    value: "Vincent Vega",
+    label: "Vincent Vega",
     about: " • hitman • 2 floor",
     image: "./../../images/Anakin.jpg"
   },
   {
-    id: 1,
-    name: "Elon Musk",
+    id: 3,
+    value: "Elon Musk",
+    label: "Elon Musk",
     about: " • co-founder, CEO and designer at Tesla and SpaceX • 28",
     image: "./../../images/Anakin.jpg"
   },
   {
-    id: 1,
-    name: "Neo",
+    id: 4,
+    value: "Neo",
+    label: "Neo",
     about: " • The One, ex-software engineer in our Matrix simulation • any floor",
     image: "./../../images/Anakin.jpg"
   },
   {
-    id: 1,
-    name: "Yagami Light",
+    id: 5,
+    value: "Yagami Light",
+    label: "Yagami Light",
     about: " • God of the new world, also known as justice • 28 floor",
     image: "./../../images/Anakin.jpg"
   },
   {
-    id: 2,
-    name: "Eru Rōraito also known as L",
+    id: 6,
+    value: "Eru Rōraito also known as L",
+    label: "Eru Rōraito also known as L",
     about: " • world-renowned detective • 31 floor",
     image: "./../../images/Anakin.jpg"
   },
   {
-    id: 1,
-    name: "Erald Coil",
+    id: 7,
+    value: "Erald Coil",
+    label: "Erald Coil",
     about: " • second most famous detective in the world • 31 floor",
     image: "./../../images/Anakin.jpg"
   },
   {
-    id: 1,
-    name: "Deneuve",
+    id: 8,
+    value: "Deneuve",
+    label: "Deneuve",
     about: " • third most famous detective in the world • 31 floor",
     image: "./../../images/Anakin.jpg"
   },
   {
-    id: 1,
-    name: "Mark Lilly",
+    id: 9,
+    value: "Mark Lilly",
+    label: "Mark Lilly",
     about: " • social worker • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
-    id: 1,
-    name: "N'aix",
+    id: 10,
+    value: "N'aix",
+    label: "N'aix",
     about: " • main damage dealer • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
-    id: 2,
-    name: "Saitama",
+    id: 11,
+    value: "Saitama",
+    label: "Saitama",
     about: " • as of now, is potentially the most powerful being to exist • floor not found",
     image: "./../../images/Anakin.jpg"
   },
   {
-    id: 1,
-    name: "Anton Chigurh",
+    id: 12,
+    value: "Anton Chigurh",
+    label: "Anton Chigurh",
     about: " • psychopathic killer who is devoid of conscience, remorse and compassion • 1 floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 2,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 2,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 2,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 2,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Darth Vader",
+    value: "Darth Vader",
+    label: "Darth Vader",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   },
   {
     id: 1,
-    name: "Saitama",
+    value: "Saitama",
+    label: "Saitama",
     about: " • Supreme commander of the Galactic Empire • last floor",
     image: "./../../images/Anakin.jpg"
   }
